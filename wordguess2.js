@@ -42,22 +42,28 @@
           {
           guessField = prompt(str);
           guessField = guessField.toLowerCase();
-          guessFieldIndex = dictionary[randomWordIndex].indexOf(guessField);
-          if(guessFieldIndex==-1)
+          var check=0;
+          for(var i=0; i<dictionary[randomWordIndex].length; i++)
+          {
+            
+            if(guessField==dictionary[randomWordIndex][i])
             {
-              chance--;
-              document.write("wrong guess<br/>You have "+chance+" chances left ");
-              
-            }
-          else
-            {
-              str=replaceAt(str,guessFieldIndex,dictionary[randomWordIndex][guessFieldIndex])
-              //document.write(str);
-            }
+              str=replaceAt(str,i,guessField);
+              check=1;
+            }  
+          }
+
+          if(check==0)
+          {
+            chance--;
+            alert("wrong character. You have "+chance+" chances left");
+
+          }
           }
           
+
           if(str==dictionary[randomWordIndex])
-          	alert("congrats");
+            alert("congrats");
         
     }
 )();
